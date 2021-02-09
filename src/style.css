@@ -1,0 +1,11 @@
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  svg {
+  background-color: #000000;
+  }
+  path {
+    stroke: #000000;
+    stroke-width: 2px;
+  }

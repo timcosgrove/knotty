@@ -24,14 +24,14 @@ Utils.getRandomFloat = function getRandomFloat(min, max) {
 // @todo: test negatives, non-numerical inputs.
 Utils.getIntDeviation = function getIntDeviation(center, deviation = 0) {
   return Utils.getRandomInt(center - deviation, center + deviation);
-}
+};
 
 // Given values for a center and an allowed deviation, returns a random
 // value within the allowed range.
 // @todo: test negatives, non-numerical inputs.
 Utils.getFloatDeviation = function getFloatDeviation(center, deviation = 0) {
   return Utils.getRandomFloat(center - deviation, center + deviation);
-}
+};
 
 // Provides random colors, given constraints.
 // Default: any color, full saturation and normal luminosity (50%).
@@ -49,18 +49,18 @@ Utils.getRandomColor = function getRandomColor({
   luminosity,
   luminosityLower = 50,
   luminosityUpper = luminosityLower,
-  luminosityDeviation = 0
+  luminosityDeviation = 0,
 } = {}) {
-  hue = isNaN(hue) ?
-    Utils.getRandomFloat(hueLower, hueUpper) :
-    Utils.getFloatDeviation(hue, hueDeviation);
-  saturation = isNaN(saturation) ?
-    Utils.getRandomFloat(saturationLower, saturationUpper) :
-    Utils.getFloatDeviation(saturation, saturationDeviation);
-  luminosity = isNaN(luminosity) ?
-    Utils.getRandomFloat(luminosityLower, luminosityUpper) :
-    Utils.getFloatDeviation(luminosity, luminosityDeviation);
-  return Utils.hslValsToRgb(hue, saturation, luminosity);
-}
+  const randomHue = hue === undefined
+    ? Utils.getRandomFloat(hueLower, hueUpper)
+    : Utils.getFloatDeviation(hue, hueDeviation);
+  const randomSaturation = saturation === undefined
+    ? Utils.getRandomFloat(saturationLower, saturationUpper)
+    : Utils.getFloatDeviation(saturation, saturationDeviation);
+  const randomLuminosity = luminosity === undefined
+    ? Utils.getRandomFloat(luminosityLower, luminosityUpper)
+    : Utils.getFloatDeviation(luminosity, luminosityDeviation);
+  return Utils.hslValsToRgb(randomHue, randomSaturation, randomLuminosity);
+};
 
 export default Utils;
